@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/components/custom_elevated_button.dart';
-import 'package:flutter_blog/components/custom_text_formfield.dart';
-import 'package:flutter_blog/pages/user/login_page.dart';
+
 import 'package:flutter_blog/util/validator_util.dart';
+import 'package:flutter_blog/view/components/custom_elevated_button.dart';
+import 'package:flutter_blog/view/components/custom_text_formfield.dart';
 import 'package:get/get.dart';
 import 'package:validators/validators.dart';
+
+import 'login_page.dart';
 
 class JoinPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

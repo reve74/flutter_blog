@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/components/custom_elevated_button.dart';
-import 'package:flutter_blog/components/custom_text_formfield.dart';
-import 'package:flutter_blog/components/custom_textarea.dart';
-import 'package:flutter_blog/pages/post/detail_page.dart';
+
 import 'package:flutter_blog/util/validator_util.dart';
+import 'package:flutter_blog/view/components/custom_elevated_button.dart';
+import 'package:flutter_blog/view/components/custom_text_formfield.dart';
+import 'package:flutter_blog/view/components/custom_textarea.dart';
 import 'package:get/get.dart';
 
 import 'home_page.dart';
 
-class UpdatePage extends StatelessWidget {
+class WritePage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -24,18 +24,16 @@ class UpdatePage extends StatelessWidget {
               CustomTextFormField(
                 hint: "Title",
                 funvalidator: validateTitle(),
-                value: "제목1",
               ),
               CustomTextArea(
                 hint: "Content",
                 funvalidator: validateContent(),
-                value: "제목1" * 30,
               ),
               CustomElevatedButton(
-                text: "수정완료",
+                text: "글쓰기",
                 funPageRoute: () {
                   if (_formKey.currentState!.validate()) {
-                    Get.back(); // 상태 관리 GetX 라이브러리 - Obs
+                    Get.off(HomePage());
                   }
                 },
               )
