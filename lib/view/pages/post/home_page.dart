@@ -16,30 +16,33 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // put 없으면 만들고, 있으면 찾기!
     UserController u = Get.find();
+    // 객체 생성(create, initialize)
     PostController p = Get.put(PostController());
-    p.findAll();
-    
+    //p.findAll();
+
+
 
     return Scaffold(
       drawer: _navigation(context),
       appBar: AppBar(
         title: Text("${u.isLogin}"),
       ),
-      body: ListView.separated(
-        itemCount: 3,
+      body: Obx(()=> ListView.separated(
+        itemCount: p.posts.length,
         itemBuilder: (context, index) {
           return ListTile(
-            onTap: () {
-              Get.to(DetailPage(index), arguments: "argument 속성 테스트");
+            onTap: () async {
+              await p.findById(p.posts[index].id!);
+              Get.to(() => DetailPage(p.posts[index].id), arguments: "argument 속성 테스트");
             },
-            title: Text("제목1"),
-            leading: Text("1"),
+            title: Text("${p.posts[index].title}"),
+            leading: Text("${p.posts[index].id}"),
           );
         },
         separatorBuilder: (context, index) {
           return Divider();
         },
-      ),
+      )),
     );
   }
 
